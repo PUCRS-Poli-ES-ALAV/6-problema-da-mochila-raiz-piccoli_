@@ -1,18 +1,16 @@
 public class Item {
 	
 	public String name;
-	public double value;
-	public double weight;
-  public double relationValueWeight;
+	public int value;
+	public int weight;
 	
-	public Item(String name, double value, double weight) {
+	public Item(String name, int value, int weight) {
 		this.name = name;
 		this.value = value;
 		this.weight = weight;
-    this.relationValueWeight = value/weight;
 	}
 	
 	public String str() {
-		return name + " [value = " + value + ", weight = " + weight + ", relationValueWeight = " + relationValueWeight + "]";
+		return name + " [value = " + value + ", weight = " + weight + "]";
 	}
 }
