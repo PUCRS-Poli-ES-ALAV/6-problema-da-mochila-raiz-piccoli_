@@ -5,23 +5,38 @@ class Main {
     Item i = new Item("4,12",4,12);
     Item i2 = new Item("10,4",10,4);
     Item i3 = new Item("2,1",2,1);
+    Item i4 = new Item("1,1",1,1);
+    Item i5 = new Item("2,2",2,2);
     ArrayList<Item> list = new ArrayList<Item>();
     list.add(i);
     list.add(i2);
     list.add(i3);
-    knapsackProblem(list);
+    list.add(i4);
+    list.add(i5);
+    int result = knapSack(15, list);
+    System.out.println("result: " + result);
   }
 
-  public static void knapsackProblem(ArrayList<Item> listItem) {
-    Collections.sort(listItem, new Comparator<Item>() {
-        @Override
-        public int compare(Item item1, Item item2) {
-            return Double.compare(item1.relationValueWeight, item2.relationValueWeight);
-        }
-    });
+  public static int max(int a, int b) { 
+    return (a > b) ? a : b; 
+  } 
 
-    for (Item item : listItem) {
-      System.out.println(item.str());
-    }     
-  }
+  public static int knapSack(int totalWeight, ArrayList<Item> listItem) 
+    { 
+        int i, w; 
+        int K[][] = new int[listItem.size()+1][totalWeight + 1]; 
+  
+        for (i = 0; i <= listItem.size(); i++) { 
+            for (w = 0; w <= totalWeight; w++) { 
+                if (i == 0 || w == 0) 
+                    K[i][w] = 0; 
+                else if (listItem.get(i-1).weight <= w) 
+                    K[i][w] = max(listItem.get(i-1).value + K[i - 1][w - listItem.get(i-1).weight], K[i - 1][w]); 
+                else
+                    K[i][w] = K[i - 1][w]; 
+            } 
+        } 
+  
+        return K[listItem.size()][totalWeight]; 
+    }
 }
