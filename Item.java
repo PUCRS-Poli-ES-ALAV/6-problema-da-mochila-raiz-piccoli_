@@ -4,13 +4,12 @@ public class Item {
 	public int value;
 	public int weight;
 	
-	public Item(String name, int value, int weight) {
-		this.name = name;
+	public Item(int weight, int value) {
 		this.value = value;
 		this.weight = weight;
 	}
 	
 	public String str() {
-		return name + " [value = " + value + ", weight = " + weight + "]";
+		return  "[value = " + value + ", weight = " + weight + "]";
 	}
 }
